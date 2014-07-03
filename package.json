@@ -1,0 +1,16 @@
+{
+  "name": "beer.underbluewaters.net",
+  "version": "0.0.0",
+  "description": "Stores sensor data from my kegerator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Chad Burt <chad@underbluewaters.net>",
+  "license": "BSD",
+  "dependencies": {
+    "express": "3.x",
+    "underscore": "~1.6.0"
+  }
+}
