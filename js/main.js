@@ -30,6 +30,10 @@ function drawHourlySparkline(type, data){
   var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
   var y = d3.scale.linear().domain([d3.max(data) + 2, d3.min(data) - 2]).range([0, height + 3]);
 
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
   var line = d3.svg.line()
     .x(function(d,i) {
       return x(i);
@@ -42,6 +46,16 @@ function drawHourlySparkline(type, data){
     .attr('cy', y(data[data.length - 1]))
     .attr('r', 1)
 
+
+  graph.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("° F");
 }
 
 
@@ -52,8 +66,12 @@ function drawDailySparkline(type, data){
   d3.select(selector + ' svg').remove();
   d3.select(selector).append("svg:svg").attr("width", width+"px").attr("height", height+"px");
   var graph = d3.select(selector + ' svg');
-  var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+  var x = d3.scale.linear().domain([0, data.length]).range([0, width - 0]);
   var y = d3.scale.linear().domain([d3.max(data) + 2, d3.min(data) - 2]).range([0, height]);
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient('right')
+    .ticks(3);
 
   var line = d3.svg.line()
     .x(function(d,i) {
@@ -62,6 +80,10 @@ function drawDailySparkline(type, data){
     .y(y)
 
   graph.append("svg:path").attr("d", line(data));
+
+  graph.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
 }
 
 function fetchData(type, duration, next) {

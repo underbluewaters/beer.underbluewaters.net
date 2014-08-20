@@ -231,3 +231,24 @@ div.item {
   width:300px;
   color:grey;
 }
+
+svg text {
+  font-size: 10px;
+  text-shadow: none;
+}
+
+.y.axis path {
+  stroke: none;
+  fill: none;
+}
+
+.tick text {
+  color: grey;
+  font-size:7px;
+  fill: #fff2c4;
+  transform: translate(290px, 0px);
+}
+
+svg {
+  overflow: visible !important;
+}
