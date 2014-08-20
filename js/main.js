@@ -27,7 +27,6 @@ function drawHourlySparkline(type, data){
   d3.select(selector + ' svg').remove();
   d3.select(selector).append("svg:svg").attr("width", width+"px").attr("height", height+"px");
   var graph = d3.select(selector + ' svg');
-  console.log('graph', graph);
   var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
   var y = d3.scale.linear().domain([d3.max(data) + 2, d3.min(data) - 2]).range([0, height + 3]);
 
@@ -53,7 +52,6 @@ function drawDailySparkline(type, data){
   d3.select(selector + ' svg').remove();
   d3.select(selector).append("svg:svg").attr("width", width+"px").attr("height", height+"px");
   var graph = d3.select(selector + ' svg');
-  console.log('graph', graph);
   var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
   var y = d3.scale.linear().domain([d3.max(data) + 2, d3.min(data) - 2]).range([0, height]);
 
