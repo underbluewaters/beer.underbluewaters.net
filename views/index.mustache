@@ -27,6 +27,16 @@
       }, 1000 * 60)
 
 
+      fetchData('keezer', 'day', function(data){
+        drawDailySparkline('fermenter', data)
+      });
+
+      setInterval(function(){
+        fetchData('keezer', 'day', function(data){
+          drawDailySparkline('fermenter', data)
+        });
+      }, 1000 * 60)
+
     </script>
   </head>
   <body>
