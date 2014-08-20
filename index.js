@@ -78,7 +78,6 @@ var noDataErrorHandler = function(err, push){
   var collection1 = store.collection('fermenter' + duration);
   average(duration, fermenterTemperatureStream.fork())
     .errors(noDataErrorHandler).each(function(doc){
-      console.log('writing', doc, duration, collection1.__collectionName__)
       collection1.write(doc);
     });
 
