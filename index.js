@@ -121,6 +121,7 @@ app.post('/setpoints', auth.connect(basic), function(req, res){
         setpoints[key] = parseFloat(setpoints[key]);
       }
     });
+    delete setpoints._id
     var collection = dbConnection.collection('setpoints');
     collection.update({}, {$set: setpoints}, function(err){
       if (err) {
