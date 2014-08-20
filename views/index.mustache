@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beer!</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="/js/main.js" charset="utf-8"></script>
+    <script charset="utf-8">
+      var eventSource = new EventSource("/rt");
+      eventSource.onmessage = function(message) {
+        var data = JSON.parse(message.data);
+        updateDisplay(data);
+      }
+
+      fetchData('fermenter', 'day', function(data){
+        drawDailySparkline('fermenter', data)
+      });
+
+      setInterval(function(){
+        fetchData('fermenter', 'day', function(data){
+          drawDailySparkline('fermenter', data)
+        });
+      }, 1000 * 60)
+
+
+    </script>
+  </head>
+  <body>
+     <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/setpoints">Adjust Setpoints</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <div class="item">
+              <h1 class="cover-heading">Fermenter</h1>
+              <div id="fy" {{^ferTemp}}style="display:none;"{{/ferTemp}}>
+                <div class="temp">
+                  <div class="sparkline-small fermenter">
+                  </div>
+                  <span id="ft">{{ferTemp}}</span>° F
+                  <div class="sparkline-large fermenter">
+                  </div>
+                </div>
+                <div id="fc" class="compressor {{#ferCompressor}}on{{/ferCompressor}}{{^ferCompressor}}off{{/ferCompressor}}">
+                  compressor
+                </div>
+                <p>
+                  Setpoint at {{setpoints.fermenter}}° F
+                </p>
+              </div>
+              <div id="fn" {{#ferTemp}}style="display:none;"{{/ferTemp}}>
+                <p>No readings, sensor must be offline!</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <h1 class="cover-heading">Kegerator</h1>
+              <div id="ky" {{^keezTemp}}style="display:none;"{{/keezTemp}}>
+                <div class="temp">
+                  <div class="sparkline-small keezer">
+                  </div>
+                  <span id="kt">{{keezTemp}}</span>° F
+                  <div class="sparkline-large fermenter">
+                  </div>
+                </div>
+                <div id="kc" class="compressor {{#keezCompressor}}on{{/keezCompressor}}{{^keezCompressor}}off{{/keezCompressor}}">
+                  compressor
+                </div>
+                <p>
+                  Setpoint at {{setpoints.keezer}}° F
+                </p>
+              </div>
+              <div id="kn" {{#keezTemp}}style="display:none;"{{/keezTemp}}>
+                <p>No readings, sensor must be offline!</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>See source <a href="https://github.com/underbluewaters/beer.underbluewaters.net">project on github</a>, by <a href="https://twitter.com/underbluewaters">@underbluewaters</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+</html>

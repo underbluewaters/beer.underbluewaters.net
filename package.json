@@ -10,7 +10,19 @@
   "author": "Chad Burt <chad@underbluewaters.net>",
   "license": "BSD",
   "dependencies": {
+    "body-parser": "^1.4.3",
     "express": "3.x",
-    "underscore": "~1.6.0"
+    "highland": "~1.26.3",
+    "hogan-express": "~0.5.2",
+    "hogan.js": "~3.0.2",
+    "mongodb": "~1.4.7",
+    "ms": "~0.6.2",
+    "request": "~2.37.0",
+    "underscore": "~1.6.0",
+    "sse-stream": "0.0.4",
+    "http-auth": "~2.1.9",
+    "request-json": "~0.4.11",
+    "bootstrap": "~3.2.0",
+    "forever": "~0.11.1"
   }
 }
