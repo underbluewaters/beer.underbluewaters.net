@@ -55,8 +55,8 @@ void loop(void) {
       relayState = Serial1.read();
       Serial1.println("received command");
       Serial1.println(relayState); 
-      if (relayState == 99) {
-        Serial1.println("last command corrupt (99). ignoring");
+      if (relayState != 0x00 && relayState != 0x01 && relayState != 0x10 && relayState != 0x11) {
+        Serial1.println("last command corrupt. ignoring");
         relayState = oldRelayState
       }
     } // Skip corrupt messages without commandStart
